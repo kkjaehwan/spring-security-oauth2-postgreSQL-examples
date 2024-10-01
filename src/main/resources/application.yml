@@ -1,0 +1,47 @@
+server:
+  port: 9001
+logging:
+  level:
+    org:
+      springframework:
+        security: DEBUG
+    com:
+      svcly: DEBUG
+spring:
+  application:
+    name: svcly-authorizationserver
+  datasource:
+    url: jdbc:postgresql://localhost:5432/runsvc_auth_db?options=-c%20timezone=UTC
+    username: testuser
+    password: testpass
+  jpa:
+    hibernate:
+      ddl-auto: update
+      jdbc:
+        lob:
+          non_contextual_creation: true
+    show-sql: true
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+  security:
+    oauth2:
+      authorizationserver:
+        client:
+          oidc-client:
+            registration:
+              client-id: oidc-client
+              client-secret: $2a$10$wExxVhIASU9QXhodKM0X4eKziEUYu.hZb25wykQso9u7ApumOnOI6
+              client-authentication-methods:
+              - client_secret_basic
+              authorization-grant-types:
+              - authorization_code
+              - refresh_token
+              redirect-uris:
+              - http://127.0.0.1:8080/login/oauth2/code/oidc-client
+              post-logout-redirect-uris:
+              - http://127.0.0.1:8080/
+              scopes:
+              - read
+              - write
+              - openid
+              - profile
+            require-authorization-consent: true

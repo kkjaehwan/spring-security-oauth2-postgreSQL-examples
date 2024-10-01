@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-parent</artifactId>
+    <version>3.3.4</version>
+    <relativePath></relativePath>
+    <!-- lookup parent from repository -->
+  </parent>
+  <groupId>com.svcly</groupId>
+  <artifactId>svcly-authorizationserver</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  <name>svcly-authorizationserver</name>
+  <description>svcly-authorizationserver</description>
+  <url>https://github.com/kkjaehwan/spring-security-oauth2-postgreSQL-examples</url>
+  <licenses>
+    <license></license>
+  </licenses>
+  <!-- 개발자 정보 -->
+  <developers>
+    <developer>
+      <id>kkjaehwan</id>
+      <name>Jaehwan Kim</name>
+      <email>kkjaehwan@gmail.com</email>
+      <roles>
+        <role>Lead Developer</role>
+      </roles>
+    </developer>
+  </developers>
+  <scm>
+    <connection></connection>
+    <developerConnection></developerConnection>
+    <tag></tag>
+    <url></url>
+  </scm>
+  <properties>
+    <java.version>17</java.version>
+    <!-- spotless 버전 -->
+    <spotless.version>2.43.0</spotless.version>
+  </properties>
+  <dependencies>
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-oauth2-authorization-server</artifactId>
+    </dependency>
+
+    <!-- PostgreSQL JDBC Driver -->
+    <dependency>
+      <groupId>org.postgresql</groupId>
+      <artifactId>postgresql</artifactId>
+    </dependency>
+    <!-- Spring Data JPA (for persistent storage) -->
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-data-jpa</artifactId>
+    </dependency>
+
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-configuration-processor</artifactId>
+      <optional>true</optional>
+      <!-- Optional dependency for annotation processing -->
+    </dependency>
+
+    <dependency>
+      <groupId>org.projectlombok</groupId>
+      <artifactId>lombok</artifactId>
+      <optional>true</optional>
+    </dependency>
+
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-devtools</artifactId>
+      <scope>runtime</scope>
+      <optional>true</optional>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-test</artifactId>
+      <scope>test</scope>
+    </dependency>
+  </dependencies>
+
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-maven-plugin</artifactId>
+      </plugin>
+      <plugin>
+        <groupId>com.diffplug.spotless</groupId>
+        <artifactId>spotless-maven-plugin</artifactId>
+        <version>${spotless.version}</version>
+        <configuration>
+          <!-- XML 포맷팅 설정 -->
+          <pom>
+            <includes>
+              <include>pom.xml</include>
+            </includes>
+            <sortPom></sortPom>
+
+          </pom>
+          <!-- Java 포맷팅 설정 -->
+          <java>
+            <googleJavaFormat></googleJavaFormat>
+            <licenseHeader>
+              <content>/*
+ * (C)$YEAR - Author: Jaehwan Kim (kkjaehwan@gmail.com)
+ * 
+ * This file is part of the Svcly Authorization Server project.
+ * 
+ * This code handles user authentication and authorization services.
+ */</content>
+            </licenseHeader>
+          </java>
+          <!-- YAML 포맷팅 설정 -->
+          <yaml>
+            <includes>
+              <!-- You have to set the target manually -->
+              <include>src/**/*.yaml</include>
+            </includes>
+            <jackson></jackson>
+            <!-- has its own section below -->
+            <prettier></prettier>
+            <!-- has its own section below -->
+          </yaml>
+        </configuration>
+        <executions>
+          <execution>
+            <goals>
+              <!--mvn running commands-->
+              <!--mvn spotless:check-->
+              <goal>check</goal>
+              <!--mvn spotless:apply-->
+              <goal>apply</goal>
+            </goals>
+            <phase>clean</phase>
+          </execution>
+        </executions>
+      </plugin>
+    </plugins>
+  </build>
+
+</project>

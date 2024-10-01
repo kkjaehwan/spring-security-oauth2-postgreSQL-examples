@@ -1,0 +1,10 @@
+{
+  "scripts": {
+    "prepare": "husky",
+    "spotless:apply": "mvn spotless:apply",
+    "spotless:check": "mvn spotless:check"
+  },
+  "devDependencies": {
+    "husky": "^9.1.6"
+  }
+}

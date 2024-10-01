@@ -1,0 +1,9 @@
+#!/bin/sh
+. "$(dirname "$0")/_/husky.sh"
+
+mvn spotless:check
+
+if [ $? -ne 0 ]; then
+  echo "Spotless check failed, please fix the formatting."
+  exit 1
+fi
